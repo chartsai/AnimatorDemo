@@ -144,6 +144,11 @@ public class MainActivity extends AppCompatActivity {
                         caches[0] = new FirstFragment();
                     }
                     break;
+                case 2:
+                    if (caches[2] == null) {
+                        caches[2] = new ThirdFragment();
+                    }
+                    break;
                 default:
                     if (caches[position] == null) {
                         caches[position] = PlaceholderFragment.newInstance(position + 1);

@@ -23,6 +23,8 @@ public class FirstFragment extends AnimatorFragment {
         AnimatorSet as = new AnimatorSet();
         as.play(xAnimator).with(yAnimator);
 
+        as.setDuration(5000);
+
         return as;
     }
 

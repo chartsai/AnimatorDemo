@@ -69,6 +69,8 @@ abstract public class AnimatorFragment extends Fragment {
 
             @Override
             public void onAnimationRepeat(Animator animation) {
+                mPlaying = true;
+                mView.invalidate();
             }
         });
         animator.start();
