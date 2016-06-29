@@ -1,52 +1,41 @@
 package idv.chatea.animatordemo;
 
 import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
- * For ObjectAnimator
+ * For Multiple properties in same animator
  */
 public class SixthFragment extends AnimatorFragment {
 
-    private int x, y;
+    private ValueAnimator anim;
 
     private Paint paint;
 
-    // used by ObjectAnimator
-    public void setX(int newX) {
-        this.x = newX;
-    }
-
-    // used by ObjectAnimator
-    public void setY(int newY) {
-        this.y = newY;
-    }
-
     @Override
     protected Animator prepareAnimator(int width, int height) {
-
-        // Use the variable name to create animator
-        // Must have the public setter for the variable name.
-        Animator xAnim = ObjectAnimator.ofInt(this, "x", 0, width);
-        Animator yAnim = ObjectAnimator.ofInt(this, "y", 0, height);
+        anim = new ValueAnimator();
+        PropertyValuesHolder pX = PropertyValuesHolder.ofInt("x", width, 0);
+        PropertyValuesHolder pY = PropertyValuesHolder.ofInt("y", 0, height);
+        anim.setValues(pX, pY);
 
         paint = new Paint();
-        paint.setColor(Color.CYAN);
+        paint.setColor(Color.DKGRAY);
 
-        AnimatorSet as = new AnimatorSet();
-        as.play(xAnim).with(yAnim);
+        anim.setDuration(5000);
 
-        as.setDuration(5000);
-
-        return as;
+        return anim;
     }
 
     @Override
     protected void onDrawAnimation(Canvas canvas) {
+        int x = (int) anim.getAnimatedValue("x");
+        int y = (int) anim.getAnimatedValue("y");
+
         canvas.drawCircle(x, y, 50, paint);
     }
 }

@@ -1,54 +1,52 @@
 package idv.chatea.animatordemo;
 
 import android.animation.Animator;
-import android.animation.TypeEvaluator;
-import android.animation.ValueAnimator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 
 /**
- * For TypeEvaluator
+ * For ObjectAnimator
  */
 public class SeventhFragment extends AnimatorFragment {
 
-    private ValueAnimator stringAnimator;
+    private int x, y;
 
     private Paint paint;
 
-    private static final TypeEvaluator STRING_TYPE_EVALUATOR = new TypeEvaluator<String>() {
-        @Override
-        public String evaluate(float fraction, String unused, String endValue) {
-            int length = Math.round(fraction * endValue.length());
-            return endValue.substring(0, length);
-        }
-    };
+    // used by ObjectAnimator
+    public void setX(int newX) {
+        this.x = newX;
+    }
+
+    // used by ObjectAnimator
+    public void setY(int newY) {
+        this.y = newY;
+    }
 
     @Override
     protected Animator prepareAnimator(int width, int height) {
-        stringAnimator = new ValueAnimator();
-        stringAnimator.setObjectValues("Android Study Group!");
-        // *MUST* set after ValueAnimator.setObjectValues(...).
-        stringAnimator.setEvaluator(STRING_TYPE_EVALUATOR);
 
-        stringAnimator.setDuration(5000);
+        // Use the variable name to create animator
+        // Must have the public setter for the variable name.
+        Animator xAnim = ObjectAnimator.ofInt(this, "x", 0, width);
+        Animator yAnim = ObjectAnimator.ofInt(this, "y", 0, height);
 
         paint = new Paint();
-        paint.setTextSize(80);
-        paint.setTextAlign(Paint.Align.LEFT);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.CYAN);
 
-        return stringAnimator;
+        AnimatorSet as = new AnimatorSet();
+        as.play(xAnim).with(yAnim);
+
+        as.setDuration(5000);
+
+        return as;
     }
 
     @Override
     protected void onDrawAnimation(Canvas canvas) {
-        String str = (String) stringAnimator.getAnimatedValue();
-        int x = canvas.getWidth() / 10;
-        int y = canvas.getHeight() / 2;
-
-        canvas.drawText(str, x, y, paint);
+        canvas.drawCircle(x, y, 50, paint);
     }
 }
