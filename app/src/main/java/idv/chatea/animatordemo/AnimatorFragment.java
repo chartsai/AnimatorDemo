@@ -3,6 +3,7 @@ package idv.chatea.animatordemo;
 import android.animation.Animator;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ abstract public class AnimatorFragment extends Fragment {
 
     protected View mView;
     private boolean mPlaying;
+
+    private Animator mCurrentAnimator;
 
     public AnimatorFragment() {
         // Required empty public constructor
@@ -43,10 +46,22 @@ abstract public class AnimatorFragment extends Fragment {
     }
 
     final public void playAnimation() {
-        Animator a = prepareAnimator(mView.getWidth(), mView.getHeight());
-        startAnimation(a);
+        if (mCurrentAnimator != null) {
+            mCurrentAnimator.cancel();
+        }
+        mCurrentAnimator = prepareAnimator(mView.getWidth(), mView.getHeight());
+        startAnimation(mCurrentAnimator);
     }
 
+    @Override
+    public void onDetach() {
+        if (mCurrentAnimator != null) {
+            mCurrentAnimator.cancel();
+        }
+        super.onDetach();
+    }
+
+    @NonNull
     abstract protected Animator prepareAnimator(int width, int height);
 
     final private void startAnimation(Animator animator) {
@@ -65,6 +80,7 @@ abstract public class AnimatorFragment extends Fragment {
             @Override
             public void onAnimationCancel(Animator animation) {
                 mPlaying = false;
+                mCurrentAnimator = null;
             }
 
             @Override
