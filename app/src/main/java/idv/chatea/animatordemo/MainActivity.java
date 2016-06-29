@@ -71,10 +71,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -102,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
                     case 4:
                         caches[position] = new FourthFragment();
                         break;
+                    case 5:
+                        caches[position] = new FifthFragment();
+                        break;
                     default:
                         caches[position] = new CoolFragment();
                         break;
@@ -113,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 5;
+            // Live fragment + 5 fragment.
+            return 1 + 5;
         }
 
         @Override
@@ -121,18 +121,9 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return "Live Demo";
-                case 1:
-                    return "Demo 1";
-                case 2:
-                    return "Demo 2";
-                case 3:
-                    return "Demo 3";
-                case 4:
-                    return "Demo 4";
-                case 5:
-                    return "Demo 5";
+                default:
+                    return "Demo " + position;
             }
-            return null;
         }
     }
 }
