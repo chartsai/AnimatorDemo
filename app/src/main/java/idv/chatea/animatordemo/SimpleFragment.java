@@ -9,7 +9,7 @@ import android.graphics.Paint;
 /**
  * For Simple Sample
  */
-public class FirstFragment extends AnimatorFragment {
+public class SimpleFragment extends AnimatorFragment {
 
     private ValueAnimator xAnimator;
 

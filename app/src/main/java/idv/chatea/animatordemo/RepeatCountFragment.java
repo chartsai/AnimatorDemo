@@ -10,7 +10,7 @@ import android.graphics.Paint;
 /**
  * For Repeat Count
  */
-public class SecondFragment extends AnimatorFragment {
+public class RepeatCountFragment extends AnimatorFragment {
 
     private ValueAnimator x1Animator;
     private ValueAnimator x2Animator;

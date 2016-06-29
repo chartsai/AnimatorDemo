@@ -8,7 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-public class CoolFragment extends AnimatorFragment {
+public class CoolAnimationFragment extends AnimatorFragment {
 
     private ValueAnimator innerAngleAnim;
     private ValueAnimator midAngleAnim;

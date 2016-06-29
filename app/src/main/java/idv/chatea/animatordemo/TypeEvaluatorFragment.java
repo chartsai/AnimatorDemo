@@ -11,7 +11,7 @@ import android.graphics.Typeface;
 /**
  * For TypeEvaluator
  */
-public class EighthFragment extends AnimatorFragment {
+public class TypeEvaluatorFragment extends AnimatorFragment {
 
     private ValueAnimator stringAnimator;
 

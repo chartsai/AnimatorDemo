@@ -10,7 +10,7 @@ import android.graphics.Paint;
 /**
  * For Multiple properties in same animator
  */
-public class SixthFragment extends AnimatorFragment {
+public class MultiplePropertyFragment extends AnimatorFragment {
 
     private ValueAnimator anim;
 

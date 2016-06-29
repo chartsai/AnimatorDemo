@@ -10,7 +10,7 @@ import android.graphics.Paint;
 /**
  * For Repeat Mode
  */
-public class ThirdFragment extends AnimatorFragment {
+public class RepeatModeFragment extends AnimatorFragment {
 
     private ValueAnimator x1Animator;
     private ValueAnimator x2Animator;

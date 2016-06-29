@@ -10,7 +10,7 @@ import android.graphics.Paint;
 /**
  * For AnimatorSet
  */
-public class FourthFragment extends AnimatorFragment {
+public class AnimatorSetFragment extends AnimatorFragment {
 
     private ValueAnimator xAnimator;
     private ValueAnimator yAnimator;

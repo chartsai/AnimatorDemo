@@ -9,9 +9,32 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.AndroidRuntimeException;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final class Demo {
+        String name;
+        Class clazz;
+        Demo(String name, Class clazz) {
+            this.name = name;
+            this.clazz = clazz;
+        }
+    }
+
+    private static final Demo[] DEMO_LIST = {
+            new Demo("Live Coding Demo", LiveFragment.class),
+            new Demo("Demo 1: Simple", SimpleFragment.class),
+            new Demo("Demo 2: Repeat Count", RepeatCountFragment.class),
+            new Demo("Demo 3: Repeat Mode", RepeatModeFragment.class),
+            new Demo("Demo 4: AnimatorSet", AnimatorSetFragment.class),
+            new Demo("Demo 5: Interpolator", InterpolatorFragment.class),
+            new Demo("Demo 6: Multiple Property", MultiplePropertyFragment.class),
+            new Demo("Demo 7: Object Animator", ObjectAnimatorFragment.class),
+            new Demo("Demo 8: Type Evaluator", TypeEvaluatorFragment.class),
+            new Demo("Demo 9: Cool Animation ", CoolAnimationFragment.class),
+    };
 
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -82,57 +105,24 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (caches[position] == null) {
-                switch (position) {
-                    case 0:
-                        caches[position] = new LiveFragment();
-                        break;
-                    case 1:
-                        caches[position] = new FirstFragment();
-                        break;
-                    case 2:
-                        caches[position] = new SecondFragment();
-                        break;
-                    case 3:
-                        caches[position] = new ThirdFragment();
-                        break;
-                    case 4:
-                        caches[position] = new FourthFragment();
-                        break;
-                    case 5:
-                        caches[position] = new FifthFragment();
-                        break;
-                    case 6:
-                        caches[position] = new SixthFragment();
-                        break;
-                    case 7:
-                        caches[position] = new SeventhFragment();
-                        break;
-                    case 8:
-                        caches[position] = new EighthFragment();
-                        break;
-                    default:
-                        caches[position] = new CoolFragment();
-                        break;
+                Class clazz = DEMO_LIST[position].clazz;
+                try {
+                    caches[position] = (Fragment) clazz.newInstance();
+                } catch (Exception e) {
+                    throw new AndroidRuntimeException("Cannot create Fragment");
                 }
             }
-
             return caches[position];
         }
 
         @Override
         public int getCount() {
-            // Live fragment + demo fragments.
-            return 1 + 8;
+            return DEMO_LIST.length;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Live Demo";
-                default:
-                    return "Demo " + position;
-            }
+            return DEMO_LIST[position].name;
         }
     }
 }

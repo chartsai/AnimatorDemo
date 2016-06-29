@@ -16,7 +16,7 @@ import android.view.animation.OvershootInterpolator;
 /**
  * For Interpolator
  */
-public class FifthFragment extends AnimatorFragment {
+public class InterpolatorFragment extends AnimatorFragment {
 
     private ValueAnimator x1Animator;
     private ValueAnimator x2Animator;
