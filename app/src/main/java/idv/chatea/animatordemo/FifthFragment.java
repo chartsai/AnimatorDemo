@@ -30,32 +30,36 @@ public class FifthFragment extends AnimatorFragment {
 
     @Override
     protected Animator prepareAnimator(int width, int height) {
+        int offset = width / 8;
+        int start = offset;
+        int end = width - offset;
+
         x1Animator = new ValueAnimator();
-        x1Animator.setIntValues(0, width);
+        x1Animator.setIntValues(start, end);
         // default interpolator is AccelerateDecelerateInterpolator
 
         x2Animator = new ValueAnimator();
-        x2Animator.setIntValues(0, width);
+        x2Animator.setIntValues(start, end);
         x2Animator.setInterpolator(new LinearInterpolator());
 
         x3Animator = new ValueAnimator();
-        x3Animator.setIntValues(0, width);
+        x3Animator.setIntValues(start, end);
         x3Animator.setInterpolator(new AccelerateInterpolator());
 
         x4Animator = new ValueAnimator();
-        x4Animator.setIntValues(0, width);
+        x4Animator.setIntValues(start, end);
         x4Animator.setInterpolator(new DecelerateInterpolator());
 
         x5Animator = new ValueAnimator();
-        x5Animator.setIntValues(0, width);
+        x5Animator.setIntValues(start, end);
         x5Animator.setInterpolator(new OvershootInterpolator());
 
         x6Animator = new ValueAnimator();
-        x6Animator.setIntValues(0, width);
+        x6Animator.setIntValues(start, end);
         x6Animator.setInterpolator(new AnticipateInterpolator());
 
         x7Animator = new ValueAnimator();
-        x7Animator.setIntValues(0, width);
+        x7Animator.setIntValues(start, end);
         x7Animator.setInterpolator(new AnticipateOvershootInterpolator());
 
         AnimatorSet as = new AnimatorSet();
