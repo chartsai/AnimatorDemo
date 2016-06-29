@@ -85,32 +85,27 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    if (caches[0] == null) {
-                        caches[0] = new FirstFragment();
-                    }
-                    break;
-                case 1:
-                    if (caches[1] == null) {
-                        caches[1] = new SecondFragment();
-                    }
-                    break;
-                case 2:
-                    if (caches[2] == null) {
-                        caches[2] = new ThirdFragment();
-                    }
-                    break;
-                case 3:
-                    if (caches[3] == null) {
-                        caches[3] = new FourthFragment();
-                    }
-                    break;
-                default:
-                    if (caches[position] == null) {
+            if (caches[position] == null) {
+                switch (position) {
+                    case 0:
+                        caches[position] = new LiveFragment();
+                        break;
+                    case 1:
+                        caches[position] = new FirstFragment();
+                        break;
+                    case 2:
+                        caches[position] = new SecondFragment();
+                        break;
+                    case 3:
+                        caches[position] = new ThirdFragment();
+                        break;
+                    case 4:
+                        caches[position] = new FourthFragment();
+                        break;
+                    default:
                         caches[position] = new CoolFragment();
-                    }
-                    break;
+                        break;
+                }
             }
 
             return caches[position];
@@ -125,14 +120,16 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Demo 1";
+                    return "Live Demo";
                 case 1:
-                    return "Demo 2";
+                    return "Demo 1";
                 case 2:
-                    return "Demo 3";
+                    return "Demo 2";
                 case 3:
-                    return "Demo 4";
+                    return "Demo 3";
                 case 4:
+                    return "Demo 4";
+                case 5:
                     return "Demo 5";
             }
             return null;

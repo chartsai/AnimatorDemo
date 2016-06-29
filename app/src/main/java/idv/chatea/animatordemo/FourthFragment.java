@@ -8,7 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
- * Simple demo
+ * For AnimatorSet
  */
 public class FourthFragment extends AnimatorFragment {
 

@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
- * For AnimatorSet
+ * For Simple Sample
  */
 public class FirstFragment extends AnimatorFragment {
 
