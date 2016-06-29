@@ -5,7 +5,9 @@ import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 
 /**
@@ -28,17 +30,18 @@ public class TypeEvaluatorFragment extends AnimatorFragment {
     @Override
     protected Animator prepareAnimator(int width, int height) {
         stringAnimator = new ValueAnimator();
-        stringAnimator.setObjectValues("Android Study Group!");
-        // *MUST* set after ValueAnimator.setObjectValues(...).
+        stringAnimator.setObjectValues("Hello, Android Taipei!");
         stringAnimator.setEvaluator(STRING_TYPE_EVALUATOR);
 
         stringAnimator.setDuration(5000);
 
         paint = new Paint();
-        paint.setTextSize(80);
+        paint.setTextSize(100);
         paint.setTextAlign(Paint.Align.LEFT);
         paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.BLACK);
+        paint.setShader(new LinearGradient(0, 0, width, 0,
+                new int[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.CYAN},
+                null, Shader.TileMode.MIRROR));
 
         return stringAnimator;
     }
