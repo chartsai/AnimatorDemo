@@ -16,10 +16,12 @@ public class SixthFragment extends AnimatorFragment {
 
     private Paint paint;
 
+    // used by ObjectAnimator
     public void setX(int newX) {
         this.x = newX;
     }
 
+    // used by ObjectAnimator
     public void setY(int newY) {
         this.y = newY;
     }

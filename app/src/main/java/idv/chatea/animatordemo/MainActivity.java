@@ -104,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     case 6:
                         caches[position] = new SixthFragment();
                         break;
+                    case 7:
+                        caches[position] = new SeventhFragment();
+                        break;
                     default:
                         caches[position] = new CoolFragment();
                         break;
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Live fragment + demo fragments.
-            return 1 + 6;
+            return 1 + 7;
         }
 
         @Override
