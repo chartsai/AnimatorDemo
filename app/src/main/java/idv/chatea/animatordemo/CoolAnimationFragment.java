@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 
 public class CoolAnimationFragment extends AnimatorFragment {
 
@@ -19,25 +21,30 @@ public class CoolAnimationFragment extends AnimatorFragment {
     private Paint midPaint;
     private Paint outerPaint;
 
+    private Paint whiltePaint;
+
     @Override
     protected Animator prepareAnimator(int width, int height) {
         innerAngleAnim = new ValueAnimator();
-        innerAngleAnim.setIntValues(0, 360);
+        innerAngleAnim.setIntValues(0, 359);
         innerAngleAnim.setRepeatMode(ValueAnimator.RESTART);
         innerAngleAnim.setRepeatCount(ValueAnimator.INFINITE);
-        innerAngleAnim.setDuration(3000);
+        innerAngleAnim.setDuration(1500);
+        innerAngleAnim.setInterpolator(new LinearInterpolator());
 
         midAngleAnim = new ValueAnimator();
-        midAngleAnim.setIntValues(360, 0);
+        midAngleAnim.setIntValues(359, 0);
         midAngleAnim.setRepeatMode(ValueAnimator.RESTART);
         midAngleAnim.setRepeatCount(ValueAnimator.INFINITE);
-        midAngleAnim.setDuration(5000);
+        midAngleAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        midAngleAnim.setDuration(2500);
 
         outerAngleAnim = new ValueAnimator();
-        outerAngleAnim.setIntValues(0, 360);
+        outerAngleAnim.setIntValues(0, 359);
         outerAngleAnim.setRepeatMode(ValueAnimator.RESTART);
         outerAngleAnim.setRepeatCount(ValueAnimator.INFINITE);
-        outerAngleAnim.setDuration(7000);
+        outerAngleAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        outerAngleAnim.setDuration(3500);
 
         AnimatorSet as = new AnimatorSet();
         as.play(innerAngleAnim).with(midAngleAnim);
@@ -59,6 +66,10 @@ public class CoolAnimationFragment extends AnimatorFragment {
         outerPaint.setColor(Color.GREEN);
         outerPaint.setStyle(Paint.Style.FILL);
 
+        whiltePaint = new Paint();
+        whiltePaint.setColor(Color.WHITE);
+        whiltePaint.setStyle(Paint.Style.FILL);
+
         return as;
     }
 
@@ -78,7 +89,11 @@ public class CoolAnimationFragment extends AnimatorFragment {
         int outerAngle = (int) outerAngleAnim.getAnimatedValue();
 
         drawArcHelper(canvas, centerX, centerY, outerRadius, outerAngle, 225, outerPaint);
+        canvas.drawCircle(centerX, centerY, midRadius, whiltePaint);
+
         drawArcHelper(canvas, centerX, centerY, midRadius, midAngle, 225, midPaint);
+        canvas.drawCircle(centerX, centerY, innerRadius, whiltePaint);
+
         drawArcHelper(canvas, centerX, centerY, innerRadius, innerAngle, 225, innerPaint);
         canvas.drawCircle(centerX, centerY, centerCircleRadius, centerPaint);
     }

@@ -31,7 +31,7 @@ abstract public class AnimatorFragment extends Fragment {
             protected void onDraw(Canvas canvas) {
                 if (isPlaying()) {
                     onDrawAnimation(canvas);
-                    postInvalidateDelayed(16);
+                    postInvalidateDelayed(10);
                 }
             }
         };
