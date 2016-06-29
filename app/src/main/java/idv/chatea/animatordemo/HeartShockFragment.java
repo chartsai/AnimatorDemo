@@ -25,7 +25,8 @@ public class HeartShockFragment extends AnimatorFragment {
     protected Animator prepareAnimator(int width, int height) {
         ObjectAnimator anim = ObjectAnimator.ofInt(this, "radius", width / 6, width/ 5);
         anim.setDuration(500);
-        anim.setRepeatCount(ValueAnimator.INFINITE);
+        // Shock 5 times. We go forward and use reverse to back, thus the counter is double
+        anim.setRepeatCount(5 * 2);
         anim.setRepeatMode(ValueAnimator.REVERSE);
         anim.setInterpolator(new AccelerateInterpolator(2f));
 
