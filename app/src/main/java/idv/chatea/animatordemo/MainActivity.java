@@ -101,6 +101,11 @@ public class MainActivity extends AppCompatActivity {
                         caches[2] = new ThirdFragment();
                     }
                     break;
+                case 3:
+                    if (caches[3] == null) {
+                        caches[3] = new FourthFragment();
+                    }
+                    break;
                 default:
                     if (caches[position] == null) {
                         caches[position] = new CoolFragment();

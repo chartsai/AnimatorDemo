@@ -1,17 +1,19 @@
 package idv.chatea.animatordemo;
 
 import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
- * For AnimatorSet
+ * Simple demo
  */
-public class FirstFragment extends AnimatorFragment {
+public class FourthFragment extends AnimatorFragment {
 
     private ValueAnimator xAnimator;
+    private ValueAnimator yAnimator;
 
     private Paint paint;
 
@@ -19,19 +21,25 @@ public class FirstFragment extends AnimatorFragment {
     protected Animator prepareAnimator(int width, int height) {
         xAnimator = new ValueAnimator();
         xAnimator.setIntValues(0, width);
-        xAnimator.setDuration(5000);
+
+        yAnimator = new ValueAnimator();
+        yAnimator.setIntValues(0, height);
+
+        AnimatorSet as = new AnimatorSet();
+        as.play(xAnimator).with(yAnimator);
+
+        as.setDuration(5000);
 
         paint = new Paint();
-        paint.setColor(Color.GREEN);
+        paint.setColor(Color.BLACK);
 
-        return xAnimator;
+        return as;
     }
 
     @Override
     protected void onDrawAnimation(Canvas canvas) {
-        int y = canvas.getHeight() / 2;
-
         int x = (int) xAnimator.getAnimatedValue();
+        int y = (int) yAnimator.getAnimatedValue();
 
         canvas.drawCircle(x, y, 50, paint);
     }
