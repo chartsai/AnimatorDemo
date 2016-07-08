@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
             new Demo("Demo 8: Type Evaluator", TypeEvaluatorFragment.class),
             new Demo("Demo 9: Cool Animation ", CoolAnimationFragment.class),
             new Demo("Demo 10: Heart Shock Animation ", HeartShockFragment.class),
+            new Demo("Demo 11: TaiChi Animation ", TaiChiFragment.class),
+            new Demo("Demo 12: Lottery Animation ", LotteryFragment.class),
     };
 
     private ViewPager mViewPager;
